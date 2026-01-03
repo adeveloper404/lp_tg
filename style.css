@@ -1,0 +1,364 @@
+/* --- 1. IMPORT FONT & VARIABEL --- */
+/* Mengambil font Poppins agar terlihat modern namun tetap simpel */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #ff6600;       /* Warna Utama */
+    --primary-dark: #e65c00;        /* Warna Hover */
+    --text-dark: #333333;           /* Warna Teks Judul */
+    --text-light: #666666;          /* Warna Teks Paragraf */
+    --bg-light: #f9f9f9;            /* Background selingan */
+    --white: #ffffff;
+    --shadow-soft: 0 5px 20px rgba(0,0,0,0.08); /* Bayangan halus */
+}
+
+/* --- 2. PENGATURAN DASAR --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Menggunakan font baru */
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.7;
+    color: var(--text-light);
+    background-color: var(--white);
+}
+
+/* Agar scroll tidak tertutup navbar fixed */
+html {
+    scroll-padding-top: 80px;
+}
+
+/* --- 3. NAVIGASI (Simple & Clean) --- */
+header {
+    background-color: rgba(255, 255, 255, 0.95); /* Sedikit transparan */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Bayangan tipis */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(5px); /* Efek blur di belakang navbar */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: var(--text-dark);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px; /* Jarak antar menu */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 15px;
+    transition: 0.3s;
+    position: relative;
+}
+
+/* Efek garis bawah simpel saat hover */
+nav ul li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s;
+    margin-top: 2px;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* --- 4. HERO SECTION --- */
+.hero {
+    height: 100vh; /* Full screen */
+    position: relative;
+    /* Ganti gambar sesuai file asli */
+    background-image: url('img/tg1.jpg'); 
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    margin-top: -60px; /* Kompensasi navbar fixed */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)); /* Gradasi agar lebih elegan */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+    max-width: 700px;
+}
+
+/* Styling Marquee agar tidak terlihat kuno */
+.hero marquee {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    display: block; /* Memastikan block level */
+}
+
+.hero h1 {
+    display: inline; /* Fix untuk marquee */
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin: 20px auto;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 12px 35px;
+    text-decoration: none;
+    border-radius: 50px; /* Tombol bulat (Pill shape) */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+}
+
+.btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px); /* Efek naik sedikit saat hover */
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+}
+
+/* --- 5. KONTEN UMUM (LAYOUT) --- */
+.container {
+    padding: 80px 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+/* --- 6. PRODUK GRID (Card Style) --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-content: cent;
+    gap: 30px;
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: 15px; /* Sudut tumpul */
+    overflow: hidden;
+    box-shadow: var(--shadow-soft); /* Bayangan lembut pengganti border */
+    transition: transform 0.3s ease;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.product-card:hover {
+    transform: translateY(-10px); /* Efek melayang */
+}
+
+.product-img {
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img img {
+    transform: scale(1.1); /* Zoom in gambar saat hover */
+}
+
+.product-card h3 {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.price {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* --- 7. FAQ (Bubble Style) --- */
+.faq-item {
+    background: var(--white);
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.faq-item strong {
+    display: block;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+/* --- 8. KONTAK --- */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Frame Peta agar rounded */
+.map iframe {
+    border-radius: 15px;
+    box-shadow: var(--shadow-soft);
+}
+
+/* --- 9. DEVELOPER TEAM --- */
+.developer-grid {
+    display: flex;            
+    flex-wrap: wrap;          /* Supaya kartu turun ke bawah jika layar penuh */
+    justify-content: center;  /* KUNCI: Membuat semua item (termasuk sisa) rata tengah */
+    gap: 30px;                /* Jarak antar kartu */
+    margin-top: 20px;
+}
+
+.dev-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid transparent;
+}
+
+.dev-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+}
+
+.dev-img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary-color);
+    padding: 2px; /* Jarak antara foto dan border */
+    background: var(--white);
+}
+
+.dev-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.dev-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.dev-card p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* --- 10. FOOTER --- */
+footer {
+    background: #222; /* Hitam soft */
+    color: #bbb;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 0;
+    font-size: 0.9rem;
+}
+
+/* --- 11. RESPONSIVE (MOBILE) --- */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    
+    nav {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    nav ul li { margin-left: 0; }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr; /* Stack ke bawah di HP */
+    }
+    
+    .map { order: -1; margin-bottom: 20px; } /* Peta pindah ke atas di HP */
+}
